@@ -38,13 +38,14 @@ log = logging.getLogger(__name__)
 
 class SaveFile:
     async def save_file(
-        self: "pyrogram.Client",
-        path: Union[str, BinaryIO],
-        file_id: int = None,
-        file_part: int = 0,
-        progress: Callable = None,
-        progress_args: tuple = ()
-    ):
+                                
+            self: "pyrogram.Client",
+            path: Union[str, BinaryIO],
+            file_id: int = None,
+            file_part: int = 0,
+            progress: Callable = None,
+            progress_args: tuple = ()
+          ):
         """Upload a file onto Telegram servers, without actually sending the message to anyone.
         Useful whenever an InputFile type is required.
 
@@ -95,10 +96,9 @@ class SaveFile:
         Raises:
             RPCError: In case of a Telegram RPC error.
         """
-        async with self.save_file_semaphore:
+ #       async with self.save_file_semaphore:
             if path is None:
-                return None
-
+                return None        
             async def worker(session):
                 while True:
                     data = await queue.get()
